@@ -20,11 +20,11 @@
           <span class="input-group-addon" id="sizing-addon2">
             <i class="glyphicon glyphicon-home"></i>
           </span>
-          <select name="kota" class="form-control select2"  aria-describedby="sizing-addon2">
+          <select name="jasa" class="form-control select2"  aria-describedby="sizing-addon2">
             <?php
-            foreach ($dataKota as $kota) {
+            foreach ($dataJasa as $jasa) {
               ?>
-              <option value="<?php echo $kota->id; ?>" <?php if($kota->id == $dataPegawai->id_kota){echo "selected='selected'";} ?>><?php echo $kota->nama; ?></option>
+              <option value="<?php echo $jasa->id; ?>" <?php if($jasa->id == $dataPelanggan->id_jasa){echo "selected='selected'";} ?>><?php echo $jasa->nama; ?></option>
               <?php
             }
             ?>
@@ -35,11 +35,11 @@
           <i class="glyphicon glyphicon-tag"></i>
           </span>
           <span class="input-group-addon">
-              <input type="radio" name="jk" value="1" id="laki" class="minimal" <?php if($dataPegawai->id_kelamin == 1){echo "checked='checked'";} ?>>
+              <input type="radio" name="jk" value="1" id="laki" class="minimal" <?php if($dataPelanggan->id_kelamin == 1){echo "checked='checked'";} ?>>
           <label for="laki">Laki-laki</label>
             </span>
             <span class="input-group-addon">
-              <input type="radio" name="jk" value="2" id="perempuan" class="minimal" <?php if($dataPegawai->id_kelamin == 2){echo "checked='checked'";} ?>> 
+              <input type="radio" name="jk" value="2" id="perempuan" class="minimal" <?php if($dataPelanggan->id_kelamin == 2){echo "checked='checked'";} ?>> 
           <label for="perempuan">Perempuan</label>
             </span>
         </div>
@@ -47,11 +47,11 @@
           <span class="input-group-addon" id="sizing-addon2">
             <i class="glyphicon glyphicon-briefcase"></i>
           </span>
-          <select name="posisi" class="form-control select2"  aria-describedby="sizing-addon2">
+          <select name="pelaksana" class="form-control select2"  aria-describedby="sizing-addon2">
             <?php
-            foreach ($dataPosisi as $posisi) {
+            foreach ($dataPelaksana as $pelaksana) {
               ?>
-              <option value="<?php echo $posisi->id; ?>" <?php if($posisi->id == $dataPegawai->id_posisi){echo "selected='selected'";} ?>><?php echo $posisi->nama; ?></option>
+              <option value="<?php echo $pelaksana->id; ?>" <?php if($pelaksana->id == $dataPelanggan->id_pelaksana){echo "selected='selected'";} ?>><?php echo $pelaksana->nama; ?></option>
               <?php
             }
             ?>

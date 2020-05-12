@@ -20,12 +20,12 @@
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-home"></i>
       </span>
-      <select name="kota" class="form-control select2" aria-describedby="sizing-addon2">
+      <select name="jasa" class="form-control select2" aria-describedby="sizing-addon2">
         <?php
-        foreach ($dataKota as $kota) {
+        foreach ($dataJasa as $jasa) {
           ?>
-          <option value="<?php echo $kota->id; ?>">
-            <?php echo $kota->nama; ?>
+          <option value="<?php echo $jasa->id; ?>">
+            <?php echo $jasa->nama; ?>
           </option>
           <?php
         }
@@ -49,12 +49,12 @@
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-briefcase"></i>
       </span>
-      <select name="posisi" class="form-control select2"  aria-describedby="sizing-addon2" style="width: 100%">
+      <select name="pelanggan" class="form-control select2"  aria-describedby="sizing-addon2" style="width: 100%">
         <?php
-        foreach ($dataPosisi as $posisi) {
+        foreach ($dataPelanggan as $pelanggan) {
           ?>
-          <option value="<?php echo $posisi->id; ?>">
-            <?php echo $posisi->nama; ?>
+          <option value="<?php echo $pelanggan->id; ?>">
+            <?php echo $pelanggan->nama; ?>
           </option>
           <?php
         }

@@ -20,7 +20,7 @@ class M_jasa extends CI_Model {
 	}
 
 	public function select_by_pelanggan($id) {
-		$sql = " SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.telp AS telp, kota.nama AS kota, kelamin.nama AS kelamin, posisi.nama AS posisi FROM pelanggan, kota, kelamin, posisi WHERE pelanggan.id_kelamin = kelamin.id AND pelanggan.id_posisi = posisi.id AND pelanggan.id_kota = kota.id AND pelanggan.id_kota={$id}";
+		$sql = " SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id AND pelanggan.id_jasa={$id}";
 
 		$data = $this->db->query($sql);
 
@@ -28,7 +28,7 @@ class M_jasa extends CI_Model {
 	}
 
 	public function insert($data) {
-		$sql = "INSERT INTO jasa VALUES('','" .$data['kota'] ."')";
+		$sql = "INSERT INTO jasa VALUES('','" .$data['jasa'] ."')";
 
 		$this->db->query($sql);
 
@@ -71,5 +71,5 @@ class M_jasa extends CI_Model {
 	}
 }
 
-/* End of file M_kota.php */
-/* Location: ./application/models/M_kota.php */
+/* End of file M_jasa.php */
+/* Location: ./application/models/M_jasa.php */

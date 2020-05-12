@@ -58,7 +58,7 @@ class Pelanggan extends AUTH_Controller {
 		$id = trim($_POST['id']);
 
 		$data['dataPelanggan'] = $this->M_pelanggan->select_by_id($id);
-		$data['dataPelaksana'] = $this->M_posisi->select_all();
+		$data['dataPelaksana'] = $this->M_pelaksana->select_all();
 		$data['dataJasa'] = $this->M_jasa->select_all();
 		$data['userdata'] = $this->userdata;
 
@@ -69,7 +69,7 @@ class Pelanggan extends AUTH_Controller {
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
 		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
-		$this->form_validation->set_rules('posisi', 'Posisi', 'trim|required');
+		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -118,7 +118,7 @@ class Pelanggan extends AUTH_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, "Nomor Telepon");
 		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, "ID Jasa");
 		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, "ID Kelamin");
-		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, "ID Posisi");
+		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, "ID Pelaksana");
 		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, "Status");
 		$rowCount++;
 
@@ -128,7 +128,7 @@ class Pelanggan extends AUTH_Controller {
 		    $objPHPExcel->getActiveSheet()->setCellValueExplicit('C'.$rowCount, $value->telp, PHPExcel_Cell_DataType::TYPE_STRING);
 		    $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->id_jasa); 
 		    $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value->id_kelamin); 
-		    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value->id_posisi); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value->id_pelaksana); 
 		    $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $value->status); 
 		    $rowCount++; 
 		} 
@@ -178,7 +178,7 @@ class Pelanggan extends AUTH_Controller {
 							$resultData[$index]['telp'] = $value['C'];
 							$resultData[$index]['id_jasa'] = $value['D'];
 							$resultData[$index]['id_kelamin'] = $value['E'];
-							$resultData[$index]['id_posisi'] = $value['F'];
+							$resultData[$index]['id_pelaksana'] = $value['F'];
 							$resultData[$index]['status'] = $value['G'];
 						}
 					}

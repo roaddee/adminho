@@ -1,6 +1,6 @@
 <div class="col-md-12 well">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h3 style="display:block; text-align:center;"><i class="fa fa-briefcase"></i> List Pegawai (Posisi: <b><?php echo $posisi->nama; ?></b>)</h3>
+  <h3 style="display:block; text-align:center;"><i class="fa fa-briefcase"></i> Daftar Pelanggan (Pelaksana : <b><?php echo $pelaksana->nama; ?></b>)</h3>
 
   <div class="box box-body">
       <table id="tabel-detail" class="table table-bordered table-striped">
@@ -8,19 +8,19 @@
           <tr>
             <th>Nama</th>
             <th>No Telp</th>
-            <th>Asal kota</th>
+            <th>Jasa</th>
             <th>Jenis Kelamin</th>
           </tr>
         </thead>
-        <tbody id="data-pegawai">
+        <tbody id="data-pelaksana">
           <?php
-            foreach ($dataPosisi as $pegawai) {
+            foreach ($dataPelaksana as $pelanggan) {
               ?>
               <tr>
-                <td style="min-width:230px;"><?php echo $pegawai->pegawai; ?></td>
-                <td><?php echo $pegawai->telp; ?></td>
-                <td><?php echo $pegawai->kota; ?></td>
-                <td><?php echo $pegawai->kelamin; ?></td>
+                <td style="min-width:230px;"><?php echo $pelanggan->pelanggan; ?></td>
+                <td><?php echo $pelanggan->telp; ?></td>
+                <td><?php echo $pelanggan->jasa; ?></td>
+                <td><?php echo $pelanggan->kelamin; ?></td>
               </tr>
               <?php
             }

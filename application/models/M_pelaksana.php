@@ -17,7 +17,7 @@ class M_pelaksana extends CI_Model {
 	}
 
 	public function select_by_pelanggan($id) {
-		$sql = " SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.telp AS telp, kota.nama AS kota, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, kota, kelamin, pelaksana WHERE pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_kota = kota.id AND pelanggan.id_pelaksana={$id}";
+		$sql = " SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id AND pelanggan.id_pelaksana={$id}";
 
 		$data = $this->db->query($sql);
 

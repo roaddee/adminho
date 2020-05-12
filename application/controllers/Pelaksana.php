@@ -90,11 +90,11 @@ class Pelaksana extends AUTH_Controller {
 	}
 
 	public function detail() {
-		$data['userdata'] 	= $this->userdata;
+		$data['userdata'] 		= $this->userdata;
 
-		$id 				= trim($_POST['id']);
-		$data['pelaksana'] = $this->M_pelaksana->select_by_id($id);
-		$data['dataPelaksana'] = $this->M_pelaksana->select_by_pegawai($id);
+		$id 					= trim($_POST['id']);
+		$data['pelaksana'] 		= $this->M_pelaksana->select_by_id($id);
+		$data['dataPelaksana'] 	= $this->M_pelaksana->select_by_pelanggan($id);
 
 		echo show_my_modal('modals/modal_detail_pelaksana', 'detail-pelaksana', $data, 'lg');
 	}

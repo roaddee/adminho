@@ -96,7 +96,7 @@ CREATE TABLE `pegawai` (
   `telp` varchar(255) DEFAULT NULL,
   `id_kota` int(11) DEFAULT NULL,
   `id_kelamin` int(1) DEFAULT NULL,
-  `id_posisi` int(11) DEFAULT NULL,
+  `id_pelaksana` int(11) DEFAULT NULL,
   `status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
