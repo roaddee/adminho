@@ -35,6 +35,7 @@
 		setTimeout(function() { $('.msg').fadeOut(1000); }, 3000);
 	}
 
+	//pelanggan
 	function tampilPelanggan() {
 		$.get('<?php echo base_url('Pelanggan/tampil'); ?>', function(data) {
 			MyTable.fnDestroy();

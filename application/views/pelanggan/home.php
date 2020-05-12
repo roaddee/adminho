@@ -4,8 +4,11 @@
 
 <div class="box">
   <div class="box-header">
-    <div class="col-md-6" style="padding: 0;">
+    <div class="col-md-3" style="padding: 0;">
         <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-pelanggan"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
+    </div>
+    <div class="col-md-3">
+        <span></span>
     </div>
     <div class="col-md-3">
         <a href="<?php echo base_url('Pelanggan/export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-floppy-save"></i> Export Data Excel</a>
@@ -19,11 +22,11 @@
     <table id="list-data" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Nama</th>
-          <th>No Telp</th>
+          <th>Nama Desa</th>
+          <th>Kecamatan</th>
           <th>Jenis Jasa</th>
-          <th>Jenis Kelamin</th>
           <th>Pelaksana</th>
+          <th>Keterangan</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
       </thead>

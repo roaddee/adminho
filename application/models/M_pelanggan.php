@@ -11,7 +11,12 @@ class M_pelanggan extends CI_Model {
 	}
 
 	public function select_all() {
-		$sql = " SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id";
+		$sql = "SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.kecamatan AS kecamatan, ";
+		$sql = $sql . "pelanggan.kabupaten AS kabupaten, pelanggan.provinsi AS provinsi, ";
+		$sql = $sql . "namakontak, hpkontak, domain, alamat_cpanel, uname_cpanel, pwd_cpanel, pwd_admin, ";
+		$sql = $sql . "jasa.nama AS jasa, rupiah, tgl_mulai, tgl_akhir, tgl_update, update_ke, ";
+		$sql = $sql . "update_ke, sisa_update, pelaksana.nama AS pelaksana, tempat_hosting, keterangan ";
+		$sql = $sql . "FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id";
 
 		$data = $this->db->query($sql);
 

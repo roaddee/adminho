@@ -1,26 +1,26 @@
 <div class="col-md-offset-1 col-md-10 col-md-offset-1 well">
   <div class="form-msg"></div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h3 style="display:block; text-align:center;">Tambah Data Pegawai</h3>
+  <h3 style="display:block; text-align:center;">Tambah Data pelanggan</h3>
 
-  <form id="form-tambah-pegawai" method="POST">
+  <form id="form-tambah-pelanggan" method="POST">
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Nama" name="nama" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Nama Desa" name="nama" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-phone-alt"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Nomor Telepon" name="telp" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Kecamatan" name="kecamatan" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-home"></i>
       </span>
-      <select name="jasa" class="form-control select2" aria-describedby="sizing-addon2">
+      <select name="jasa" class="form-control select2" aria-describedby="sizing-addon2" style="width: 100%">
         <?php
         foreach ($dataJasa as $jasa) {
           ?>
@@ -32,7 +32,8 @@
         ?>
       </select>
     </div>
-    <div class="input-group form-group" style="display: inline-block;">
+
+<!--     <div class="input-group form-group" style="display: inline-block;">
       <span class="input-group-addon" id="sizing-addon2">
       <i class="glyphicon glyphicon-tag"></i>
       </span>
@@ -45,16 +46,17 @@
       <label for="perempuan">Perempuan</label>
         </span>
     </div>
+ -->    
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-briefcase"></i>
       </span>
       <select name="pelanggan" class="form-control select2"  aria-describedby="sizing-addon2" style="width: 100%">
         <?php
-        foreach ($dataPelanggan as $pelanggan) {
+        foreach ($dataPelaksana as $pelaksana) {
           ?>
-          <option value="<?php echo $pelanggan->id; ?>">
-            <?php echo $pelanggan->nama; ?>
+          <option value="<?php echo $pelaksana->id; ?>">
+            <?php echo $pelaksana->nama; ?>
           </option>
           <?php
         }

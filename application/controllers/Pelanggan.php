@@ -19,7 +19,7 @@ class Pelanggan extends AUTH_Controller {
 		$data['judul'] = "Data Pelanggan";
 		$data['deskripsi'] = "Atur Data Pelanggan";
 
-		$data['modal_tambah_pelanggan'] = show_my_modal('modals/modal_tambah_Pelanggan', 'tambah-Pelanggan', $data);
+		$data['modal_tambah_pelanggan'] = show_my_modal('modals/modal_tambah_Pelanggan', 'tambah-pelanggan', $data);
 
 		$this->template->views('pelanggan/home', $data);
 	}
@@ -31,9 +31,26 @@ class Pelanggan extends AUTH_Controller {
 
 	public function prosesTambah() {
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
+		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
+		$this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
+		$this->form_validation->set_rules('namakontak', 'Nama Kontak', 'trim|required');
+		$this->form_validation->set_rules('hpkontak', 'Nomor HP', 'trim|required');
+		$this->form_validation->set_rules('domain', 'Nama Domain', 'trim|required');
+		$this->form_validation->set_rules('alamat_cpanel', 'Alamat cPanel', 'trim|valid_url');
+		$this->form_validation->set_rules('uname_cpanel', 'User Name cPanel', 'trim|required');
+		$this->form_validation->set_rules('pwd_cpanel', 'Password cPanel', 'trim|required');
+		$this->form_validation->set_rules('pwd_admin', 'Password Admin', 'trim|required');
 		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
-		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+		$this->form_validation->set_rules('rupiah', 'Bayar', 'trim|required');
+		$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'trim|required');
+		$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'trim|required');
+		$this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
+		$this->form_validation->set_rules('update_ke', 'Update Ke', 'trim|required');
+		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required');
 		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
+		$this->form_validation->set_rules('tempat_hosting', 'Tempat Hosting', 'trim|required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -67,9 +84,26 @@ class Pelanggan extends AUTH_Controller {
 
 	public function prosesUpdate() {
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
+		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
+		$this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
+		$this->form_validation->set_rules('namakontak', 'Nama Kontak', 'trim|required');
+		$this->form_validation->set_rules('hpkontak', 'Nomor HP', 'trim|required');
+		$this->form_validation->set_rules('domain', 'Nama Domain', 'trim|required');
+		$this->form_validation->set_rules('alamat_cpanel', 'Alamat cPanel', 'trim|required');
+		$this->form_validation->set_rules('uname_cpanel', 'User Name cPanel', 'trim|required');
+		$this->form_validation->set_rules('pwd_cpanel', 'Password cPanel', 'trim|required');
+		$this->form_validation->set_rules('pwd_admin', 'Password Admin', 'trim|required');
 		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
-		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+		$this->form_validation->set_rules('rupiah', 'Bayar', 'trim|required');
+		$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'trim|required');
+		$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'trim|required');
+		$this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
+		$this->form_validation->set_rules('update_ke', 'Update Ke', 'trim|required');
+		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required');
 		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
+		$this->form_validation->set_rules('tempat_hosting', 'Tempat Hosting', 'trim|required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
