@@ -16,6 +16,70 @@
       </span>
       <input type="text" class="form-control" placeholder="Kecamatan" name="kecamatan" aria-describedby="sizing-addon2">
     </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Kabupaten" name="kabupaten" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Provinsi" name="provinsi" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Nama Kontak" name="namakontak" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="number" class="form-control" placeholder="Nomor Kontak" name="nomorkontak" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="url" class="form-control" placeholder="Alamat Domain" name="domain" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="url" class="form-control" placeholder="Alamat cPanel" name="alamat_cpanel" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="UserName cPanel" name="uname_cpanel" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Password cPanel" name="pwd_cpanel" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="url" class="form-control" placeholder="Password Admin" name="pwd_admin" aria-describedby="sizing-addon2">
+    </div>
+
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-home"></i>
@@ -33,6 +97,32 @@
       </select>
     </div>
 
+    <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="number" class="form-control" placeholder="Nominal Pembayaran" name="rupiah" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group form-group">
+    <!-- <label>Date masks:</label> -->
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <!-- <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask> -->
+          <input type="text" class="form-control" id="input_mask_tanggal">
+        </div>
+    <!-- /.input group -->
+    </div>
+
+    <!-- <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-phone-alt"></i>
+      </span>
+      <input type="date" class="form-control" placeholder="Tanggal Mulai" name="tgl_mulai" aria-describedby="sizing-addon2">
+    </div> -->
+   
 <!--     <div class="input-group form-group" style="display: inline-block;">
       <span class="input-group-addon" id="sizing-addon2">
       <i class="glyphicon glyphicon-tag"></i>
@@ -71,7 +161,6 @@
   </form>
 </div>
 
-
 <script type="text/javascript">
 $(function () {
     $(".select2").select2();
@@ -80,5 +169,38 @@ $(function () {
       checkboxClass: 'icheckbox_flat-blue',
       radioClass: 'iradio_flat-blue'
     });
+
+    $("#input_mask_tanggal").inputmask("datetime", {
+    mask: "1-2-y",
+    placeholder: "dd-mm-yyyy",
+    separator: "-"
+    });
 });
 </script>
+
+<!-- <script>
+$('#input_mask').inputmask({
+    mask: 'SJ-AAA-****-99999',
+    definitions: {
+        A: {
+            validator: "[A-Za-z0-9 ]"
+        },
+    },            
+});
+
+$("#input_mask_date_time").inputmask("datetime", {
+    mask: "y-1-2 h:s:s",
+    placeholder: "yyyy-mm-dd hh:mm:ss",
+    separator: "-",
+    hourFormat : 12
+});
+
+$("#input_mask_currency").inputmask({
+    prefix : 'Rp ',
+    radixPoint: ',',
+    groupSeparator: ".",
+    alias: "numeric",
+    autoGroup: true,
+    digits: 0
+});
+</script> -->
