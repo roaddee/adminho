@@ -24,10 +24,24 @@ class M_pelanggan extends CI_Model {
 		$data = $this->db->query($sql);
 
 		return $data->result();
+
+		/* $this->db
+      		 ->select('pelanggan.*')
+      		 ->select('jasa.nama as jasa')
+      		 ->select('pelaksana.nama as pelaksana')
+      		 ->from(self::$table)
+      		 ->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+      		 ->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+      		 ->get()
+      		 ->result(); */
 	}
 
 	public function select_by_id($id) {
-		$sql = "SELECT pelanggan.id AS id_pelanggan, pelanggan.nama AS nama_pelanggan, pelanggan.id_jasa, pelanggan.id_kelamin, pelanggan.id_pelaksana, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_jasa = jasa.id AND pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id = '{$id}'";
+		$sql = "SELECT pelanggan.id, pelanggan.nama, pelanggan.kecamatan, pelanggan.kabupaten, pelanggan.provinsi, pelanggan.namakontak, ";
+		$sql = $sql . "pelanggan.nomorkontak, pelanggan.domain, pelanggan.alamat_cpanel, pelanggan.uname_cpanel, pelanggan.pwd_cpanel, ";
+		$sql = $sql . "pelanggan.pwd_admin, pelanggan.id_jasa, pelanggan.rupiah, pelanggan.id_pelaksana, pelanggan.tgl_mulai, pelanggan.tgl_akhir, pelanggan.keterangan, ";
+		$sql = $sql . "jasa.nama AS jasa, pelaksana.nama AS pelaksana FROM pelanggan, jasa, pelaksana ";
+		$sql = $sql . "WHERE pelanggan.id_jasa = jasa.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id = '{$id}'";
 
 		$data = $this->db->query($sql);
 
