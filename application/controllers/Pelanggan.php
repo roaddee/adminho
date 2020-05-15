@@ -66,31 +66,10 @@ class Pelanggan extends AUTH_Controller {
 		echo show_my_modal('modals/modal_update_pelanggan', 'update-pelanggan', $data);
 	}
 
-	public function prosesUpdate() {
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
-		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
-		$this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
-		$this->form_validation->set_rules('namakontak', 'Nama Kontak', 'trim|required');
-		$this->form_validation->set_rules('nomorkontak', 'Nomor HP', 'trim|required');
-		$this->form_validation->set_rules('domain', 'Nama Domain', 'trim|required');
-		$this->form_validation->set_rules('alamat_cpanel', 'Alamat cPanel', 'trim|required');
-		$this->form_validation->set_rules('uname_cpanel', 'User Name cPanel', 'trim|required');
-		$this->form_validation->set_rules('pwd_cpanel', 'Password cPanel', 'trim|required');
-		$this->form_validation->set_rules('pwd_admin', 'Password Admin', 'trim|required');
-		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
-		$this->form_validation->set_rules('rupiah', 'Bayar', 'trim|required');
-		$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'trim|required');
-		$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'trim|required');
-		/* $this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
-		$this->form_validation->set_rules('update_ke', 'Update Ke', 'trim|required');
-		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required'); */
-		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
-		$this->form_validation->set_rules('tempat_hosting', 'Tempat Hosting', 'trim|required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
+	public function prosesUpdate() {	
 
 		$data = $this->input->post();
-		if ($this->form_validation->run() == TRUE) {
+		if ($this->isValidated()) {
 			$result = $this->M_pelanggan->update($data);
 
 			if ($result > 0) {
@@ -98,14 +77,20 @@ class Pelanggan extends AUTH_Controller {
 				$out['msg'] = show_succ_msg('Data Pelanggan Berhasil diupdate', '20px');
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Pelanggan Gagal diupdate', '20px');
+				$out['msg'] = show_err_msg('Data Pelanggan Gagal diupdate', '20px');
 			}
 		} else {
 			$out['status'] = 'form';
 			$out['msg'] = show_err_msg(validation_errors());
 		}
 
-		echo json_encode($out);
+		//echo json_encode($out);
+		$this->output
+			->set_content_type('application/json', 'utf-8')
+			->set_output(json_encode($out, JSON_PRETTY_PRINT))
+			->_display();
+		
+		exit;
 	}
 
 	public function delete() {
