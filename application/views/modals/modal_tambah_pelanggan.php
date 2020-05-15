@@ -1,5 +1,3 @@
-
-<!-- <meta name="csrf-token" content="{{ csrf_token() }}" /> -->
 <div class="col-md-offset-1 col-md-12 col-md-offset-1 well">
   <!-- <h3 style="display:block; text-align:center;">Tambah Data pelanggan</h3> -->
   <form id="form-tambah-pelanggan" method="POST">
