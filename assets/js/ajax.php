@@ -71,6 +71,7 @@
 			method: "POST",
 			url: "<?php echo base_url('Pelanggan/update'); ?>",
 			data: "id=" +id
+			
 		})
 		.done(function(data) {
 			$('#tempat-modal').html(data);
@@ -82,20 +83,12 @@
 		e.preventDefault();
 		var data = $(this).serialize();
 
-		/* $.ajaxSetup({
-      		headers: {
-     		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    		}
-		}); */
-
 		$.ajax({
 			method: 'POST',
 			url: '<?php echo base_url('Pelanggan/prosesTambah'); ?>',
 			data: data
 			//success: function(data){console.log(data);}
 		})
-		//alert(xhr.responseText);
-		//console.log(xhr.responseText);
 		.done(function(response) {
 
 			tampilPelanggan();
