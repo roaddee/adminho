@@ -65,11 +65,19 @@ class M_pelanggan extends CI_Model {
 	}
 
 	public function update($data) {
-		$sql = "UPDATE pelanggan SET nama='" .$data['nama'] ."', telp='" .$data['telp'] ."', id_jasa=" .$data['jasa'] .", id_kelamin=" .$data['jk'] .", id_pelaksana=" .$data['pelaksana'] ." WHERE id='" .$data['id'] ."'";
+		/* $sql = "UPDATE pelanggan SET nama='" .$data['nama'] ."', telp='" .$data['telp'] ."', id_jasa=" .$data['jasa'] .", id_kelamin=" .$data['jk'] .", id_pelaksana=" .$data['pelaksana'] ." WHERE id='" .$data['id'] ."'";
 
 		$this->db->query($sql);
 
-		return $this->db->affected_rows();
+		return $this->db->affected_rows(); */
+
+		$tgl_mulai = date_create_from_format('d-m-Y', $data['tgl_mulai']);
+		$tgl_akhir = date_create_from_format('d-m-Y', $data['tgl_akhir']);
+		$data['tgl_mulai'] = date_format($tgl_mulai, 'Y-m-d');
+		$data['tgl_akhir'] = date_format($tgl_akhir, 'Y-m-d');
+
+		return $this->db->update($table, $data, "id = '" . $data['id'] . "'");
+
 	}
 
 	public function delete($id) {
