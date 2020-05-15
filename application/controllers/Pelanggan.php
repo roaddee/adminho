@@ -30,6 +30,7 @@ class Pelanggan extends AUTH_Controller {
 	}
 
 	public function prosesTambah() {
+		
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
 		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
@@ -41,18 +42,21 @@ class Pelanggan extends AUTH_Controller {
 		$this->form_validation->set_rules('uname_cpanel', 'User Name cPanel', 'trim|required');
 		$this->form_validation->set_rules('pwd_cpanel', 'Password cPanel', 'trim|required');
 		$this->form_validation->set_rules('pwd_admin', 'Password Admin', 'trim|required');
-		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
-		$this->form_validation->set_rules('rupiah', 'Bayar', 'trim|required');
+		$this->form_validation->set_rules('id_jasa', 'Jasa', 'trim|required');
+		$this->form_validation->set_rules('rupiah', 'Biaya', 'trim|required');
+		$this->form_validation->set_rules('id_pelaksana', 'Pelaksana', 'trim|required');
 		$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'trim|required');
 		$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'trim|required');
-		/* $this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
+		/* 
+		$this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
 		$this->form_validation->set_rules('update_ke', 'Update Ke', 'trim|required');
-		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required'); */
-		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
+		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required'); 
 		$this->form_validation->set_rules('tempat_hosting', 'Tempat Hosting', 'trim|required');
+		*/
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
 
 		$data = $this->input->post();
+		
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_pelanggan->insert($data);
 
