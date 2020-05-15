@@ -70,7 +70,7 @@ class M_pelanggan extends CI_Model {
 		$sql = $sql . $data['kabupaten'] . "','" . $data['provinsi'] . "','" . $data['namakontak'] . "','";
 		$sql = $sql . $data['nomorkontak'] . "','" . $data['alamat_domain'] . "','" . $data['alamat_cpanel'] . "','";
 		$sql = $sql . $data['uname_cpanel'] . "','" . $data['pwd_cpanel'] . "','" . $data['pwd_admin'] . "',"; 
-		$sql = $sql . $data['id_jasa'] . ",'" . $data['rupiah'] . "','" . $data['id_pelaksana'] . "','";
+		$sql = $sql . $data['id_jasa'] . ",'" . $data['rupiah'] . "', " . $data['id_pelaksana'] . ",";
 		$sql = $sql . date('Y-m-d', strtotime($data['tgl_mulai'])) . "," . date('Y-m-d', strtotime($data['tgl_akhir'])) . ",'" . $data['keterangan'] . "')";
 		//$sql = $sql . "'2020-04-10'" . "," . "'2020-04-12'" . ",'" . $data['keterangan'] . "')";
 
