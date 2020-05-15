@@ -96,17 +96,16 @@
 		})
 		//alert(xhr.responseText);
 		//console.log(xhr.responseText);
-		.done(function(data) {
-			var out = JSON.parse(data);
+		.done(function(response) {
 
 			tampilPelanggan();
-			if (out.status == 'form') {
-				$('.form-msg').html(out.msg);
+			if (response.status == 'form') {
+				$('.form-msg').html(response.msg);
 				effect_msg_form();
 			} else {
 				document.getElementById("form-tambah-pelanggan").reset();
 				$('#tambah-pelanggan').modal('hide');
-				$('.msg').html(out.msg);
+				$('.msg').html(response.msg);
 				effect_msg();
 			}
 		})

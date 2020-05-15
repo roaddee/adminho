@@ -31,35 +31,10 @@ class Pelanggan extends AUTH_Controller {
 
 	public function prosesTambah() {
 		
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
-		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
-		$this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
-		$this->form_validation->set_rules('namakontak', 'Nama Kontak', 'trim|required');
-		$this->form_validation->set_rules('nomorkontak', 'Nomor HP', 'trim|required');
-		$this->form_validation->set_rules('domain', 'Nama Domain', 'trim|required');
-		$this->form_validation->set_rules('alamat_cpanel', 'Alamat cPanel', 'trim|valid_url');
-		$this->form_validation->set_rules('uname_cpanel', 'User Name cPanel', 'trim|required');
-		$this->form_validation->set_rules('pwd_cpanel', 'Password cPanel', 'trim|required');
-		$this->form_validation->set_rules('pwd_admin', 'Password Admin', 'trim|required');
-		$this->form_validation->set_rules('id_jasa', 'Jasa', 'trim|required');
-		$this->form_validation->set_rules('rupiah', 'Biaya', 'trim|required');
-		$this->form_validation->set_rules('id_pelaksana', 'Pelaksana', 'trim|required');
-		$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'trim|required');
-		$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'trim|required');
-		/* 
-		$this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
-		$this->form_validation->set_rules('update_ke', 'Update Ke', 'trim|required');
-		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required'); 
-		$this->form_validation->set_rules('tempat_hosting', 'Tempat Hosting', 'trim|required');
-		*/
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-
 		$data = $this->input->post();
 		
-		if ($this->form_validation->run() == TRUE) {
+		if ($this->isValidated()) {
 			$result = $this->M_pelanggan->insert($data);
-
 			if ($result) {
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data Pelanggan Berhasil ditambahkan', '20px');
@@ -72,7 +47,12 @@ class Pelanggan extends AUTH_Controller {
 			$out['msg'] = show_err_msg(validation_errors());
 		}
 
-		echo json_encode($out);
+		$this->output
+			->set_content_type('application/json', 'utf-8')
+			->set_output(json_encode($out, JSON_PRETTY_PRINT))
+			->_display();
+		
+		exit;
 	}
 
 	public function update() {
@@ -238,6 +218,34 @@ class Pelanggan extends AUTH_Controller {
 
 			}
 		}
+	}
+
+	private function isValidated()
+	{
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
+		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
+		$this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
+		$this->form_validation->set_rules('namakontak', 'Nama Kontak', 'trim|required');
+		$this->form_validation->set_rules('nomorkontak', 'Nomor HP', 'trim|required');
+		$this->form_validation->set_rules('domain', 'Nama Domain', 'trim|required');
+		$this->form_validation->set_rules('alamat_cpanel', 'Alamat cPanel', 'trim|valid_url');
+		$this->form_validation->set_rules('uname_cpanel', 'User Name cPanel', 'trim|required');
+		$this->form_validation->set_rules('pwd_cpanel', 'Password cPanel', 'trim|required');
+		$this->form_validation->set_rules('pwd_admin', 'Password Admin', 'trim|required');
+		$this->form_validation->set_rules('id_jasa', 'Jasa', 'trim|required');
+		$this->form_validation->set_rules('rupiah', 'Biaya', 'trim|required');
+		$this->form_validation->set_rules('id_pelaksana', 'Pelaksana', 'trim|required');
+		$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'trim|required');
+		$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'trim|required');
+		/* 
+		$this->form_validation->set_rules('tgl_update', 'Tanggal Update', 'trim|required');
+		$this->form_validation->set_rules('update_ke', 'Update Ke', 'trim|required');
+		$this->form_validation->set_rules('sisa_update', 'Sisa Update', 'trim|required'); 
+		$this->form_validation->set_rules('tempat_hosting', 'Tempat Hosting', 'trim|required');
+		*/
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
+		return $this->form_validation->run();
 	}
 }
 
