@@ -80,12 +80,22 @@
 
 	$('#form-tambah-pelanggan').submit(function(e) {
 		var data = $(this).serialize();
+		console.log(data);
+
+		/* $.ajaxSetup({
+      		headers: {
+     		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    		}
+		}); */
 
 		$.ajax({
 			method: 'POST',
 			url: '<?php echo base_url('Pelanggan/prosesTambah'); ?>',
 			data: data
+			//success: function(data){console.log(data);}
 		})
+		//alert(xhr.responseText);
+		//console.log(xhr.responseText);
 		.done(function(data) {
 			var out = jQuery.parseJSON(data);
 
@@ -330,7 +340,7 @@
 
 	$('#form-tambah-pelaksana').submit(function(e) {
 		var data = $(this).serialize();
-
+		console.log(data);
 		$.ajax({
 			method: 'POST',
 			url: '<?php echo base_url('Pelaksana/prosesTambah'); ?>',
