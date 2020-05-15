@@ -79,8 +79,8 @@
 	})
 
 	$('#form-tambah-pelanggan').submit(function(e) {
+		e.preventDefault();
 		var data = $(this).serialize();
-		console.log(data);
 
 		/* $.ajaxSetup({
       		headers: {
@@ -97,7 +97,7 @@
 		//alert(xhr.responseText);
 		//console.log(xhr.responseText);
 		.done(function(data) {
-			var out = jQuery.parseJSON(data);
+			var out = JSON.parse(data);
 
 			tampilPelanggan();
 			if (out.status == 'form') {
@@ -111,7 +111,7 @@
 			}
 		})
 		
-		e.preventDefault();
+		// e.preventDefault();
 	});
 
 	$(document).on('submit', '#form-update-pelanggan', function(e){

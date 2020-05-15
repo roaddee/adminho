@@ -1,0 +1,20 @@
+{
+  "name": "adminho",
+  "version": "1.0.0",
+  "description": "Administrasi Hosting OpenDESA",
+  "main": "index.php",
+  "scripts": {
+    "prettier": "prettier --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.14.0",
+    "phplint": "^2.0.1",
+    "prettier": "^2.0.5"
+  }
+}

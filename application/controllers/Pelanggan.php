@@ -60,7 +60,7 @@ class Pelanggan extends AUTH_Controller {
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_pelanggan->insert($data);
 
-			if ($result > 0) {
+			if ($result) {
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data Pelanggan Berhasil ditambahkan', '20px');
 			} else {

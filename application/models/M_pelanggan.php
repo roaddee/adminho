@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_pelanggan extends CI_Model {
+	
+	private static $table = 'pelanggan';
+	
 	public function select_all_pelanggan() {
 		$sql = "SELECT * FROM pelanggan";
 
@@ -66,19 +69,13 @@ class M_pelanggan extends CI_Model {
 
 	public function insert($data) {
 		$id = md5(DATE('ymdhms').rand());
-		$sql = "INSERT INTO pelanggan VALUES('{$id}'" . ",'" . $data['nama'] . "','" . $data['kecamatan'] . "','"; 
-		$sql = $sql . $data['kabupaten'] . "','" . $data['provinsi'] . "','" . $data['namakontak'] . "','";
-		$sql = $sql . $data['nomorkontak'] . "','" . $data['alamat_domain'] . "','" . $data['alamat_cpanel'] . "','";
-		$sql = $sql . $data['uname_cpanel'] . "','" . $data['pwd_cpanel'] . "','" . $data['pwd_admin'] . "',"; 
-		$sql = $sql . $data['id_jasa'] . ",'" . $data['rupiah'] . "','" . $data['id_pelaksana'] . "','";
-		$sql = $sql . date('Y-m-d', strtotime($data['tgl_mulai'])) . "," . date('Y-m-d', strtotime($data['tgl_akhir'])) . ",'" . $data['keterangan'] . "')";
-		//$sql = $sql . "'2020-04-10'" . "," . "'2020-04-12'" . ",'" . $data['keterangan'] . "')";
+		$data['id'] = $id;
+		$tgl_mulai = date_create_from_format('d-m-Y', $data['tgl_mulai']);
+		$tgl_akhir = date_create_from_format('d-m-Y', $data['tgl_akhir']);
+		$data['tgl_mulai'] = date_format($tgl_mulai, 'Y-m-d');
+		$data['tgl_akhir'] = date_format($tgl_akhir, 'Y-m-d');
 
-		//$sql2 = "INSERT INTO pelanggan (id) VALUES('{$id}'" . ")";
-
-		$this->db->query($sq);
-
-		return $this->db->affected_rows();
+		return $this->db->insert(self::$table, $data);
 	}
 
 	public function insert_batch($data) {
