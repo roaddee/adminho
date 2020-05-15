@@ -13,10 +13,10 @@ class M_pelanggan extends CI_Model {
 	public function select_all() {
 		$sql = "SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.kecamatan AS kecamatan, ";
 		$sql = $sql . "pelanggan.kabupaten AS kabupaten, pelanggan.provinsi AS provinsi, ";
-		$sql = $sql . "namakontak, hpkontak, domain, alamat_cpanel, uname_cpanel, pwd_cpanel, pwd_admin, ";
-		$sql = $sql . "jasa.nama AS jasa, rupiah, tgl_mulai, tgl_akhir, tgl_update, update_ke, ";
-		$sql = $sql . "update_ke, sisa_update, pelaksana.nama AS pelaksana, tempat_hosting, keterangan ";
-		$sql = $sql . "FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id";
+		$sql = $sql . "namakontak, nomorkontak, domain, alamat_cpanel, uname_cpanel, pwd_cpanel, pwd_admin, ";
+		$sql = $sql . "jasa.nama AS jasa, rupiah, tgl_mulai, tgl_akhir, ";
+		$sql = $sql . "pelaksana.nama AS pelaksana, tempat_hosting, keterangan ";
+		$sql = $sql . "FROM pelanggan, jasa, pelaksana WHERE pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id";
 
 		$data = $this->db->query($sql);
 
@@ -60,14 +60,23 @@ class M_pelanggan extends CI_Model {
 
 		$this->db->query($sql);
 
+		//$this->db->delete('pelanggan', array('id' => $id));
 		return $this->db->affected_rows();
 	}
 
 	public function insert($data) {
 		$id = md5(DATE('ymdhms').rand());
-		$sql = "INSERT INTO pelanggan VALUES('{$id}','" .$data['nama'] ."','" .$data['telp'] ."'," .$data['jasa'] ."," .$data['jk'] ."," .$data['pelaksana'] .",1)";
+		$sql = "INSERT INTO pelanggan VALUES('{$id}'" . ",'" . $data['nama'] . "','" . $data['kecamatan'] . "','"; 
+		$sql = $sql . $data['kabupaten'] . "','" . $data['provinsi'] . "','" . $data['namakontak'] . "','";
+		$sql = $sql . $data['nomorkontak'] . "','" . $data['alamat_domain'] . "','" . $data['alamat_cpanel'] . "','";
+		$sql = $sql . $data['uname_cpanel'] . "','" . $data['pwd_cpanel'] . "','" . $data['pwd_admin'] . "',"; 
+		$sql = $sql . $data['jasa'] . ",'" . $data['rupiah'] . "','" . $data['pelaksana'] . "','";
+		$sql = $sql . date('Y-m-d', strtotime($data['tgl_awal'])) . "," . date('Y-m-d', strtotime($data['tgl_akhir'])) . ",'" . $data['keterangan'] . "')";
+		//$sql = $sql . "'2020-04-10'" . "," . "'2020-04-12'" . ",'" . $data['keterangan'] . "')";
 
-		$this->db->query($sql);
+		//$sql2 = "INSERT INTO pelanggan (id) VALUES('{$id}'" . ")";
+
+		$this->db->query($sq);
 
 		return $this->db->affected_rows();
 	}
