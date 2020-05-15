@@ -2,40 +2,40 @@
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-aqua">
       <div class="inner">
-        <h3><?php echo $jml_pelanggan; ?></h3>
+        <h3><?= $jml_pelanggan; ?></h3>
 
         <p>Jumlah Pelanggan</p>
       </div>
       <div class="icon">
         <i class="ion ion-ios-contact"></i>
       </div>
-      <a href="<?php echo base_url('Pelanggan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= base_url('pelanggan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-green">
       <div class="inner">
-        <h3><?php echo $jml_pelaksana; ?></h3>
+        <h3><?= $jml_pelaksana; ?></h3>
 
         <p>Jumlah Pelaksana</p>
       </div>
       <div class="icon">
         <i class="ion ion-ios-briefcase-outline"></i>
       </div>
-      <a href="<?php echo base_url('Pelaksana') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= base_url('pelaksana') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3><?php echo $jml_jasa; ?></h3>
+        <h3><?= $jml_jasa; ?></h3>
 
         <p>Macam Jasa</p>
       </div>
       <div class="icon">
         <i class="ion ion-location"></i>
       </div>
-      <a href="<?php echo base_url('Jasa') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?= base_url('jasa') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -76,12 +76,12 @@
   </div>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
+<script src="<?= base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
 <script>
   //data pelaksana
   var pieChartCanvas = $("#data-pelaksana").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_pelaksana; ?>;
+  var PieData = <?= $data_pelaksana; ?>;
 
   var pieOptions = {
     segmentShowStroke: true,
@@ -102,7 +102,7 @@
   //data jasa
   var pieChartCanvas = $("#data-jasa").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_jasa; ?>;
+  var PieData = <?= $data_jasa; ?>;
 
   var pieOptions = {
     segmentShowStroke: true,
