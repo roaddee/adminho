@@ -1,13 +1,16 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
-	public function __construct() {
+class Auth extends CI_Controller
+{
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->model('M_auth');
 	}
-	
-	public function index() {
+
+	public function index()
+	{
 		$session = $this->session->userdata('status');
 
 		if ($session == '') {
@@ -17,23 +20,31 @@ class Auth extends CI_Controller {
 		}
 	}
 
-	public function login() {
-		$this->form_validation->set_rules('username', 'Username', 'required|min_length[4]|max_length[15]');
+	public function login()
+	{
+		$this->form_validation->set_rules(
+			'username',
+			'Username',
+			'required|min_length[4]|max_length[15]'
+		);
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
-		if ($this->form_validation->run() == TRUE) {
+		if ($this->form_validation->run() == true) {
 			$username = trim($_POST['username']);
 			$password = trim($_POST['password']);
 
 			$data = $this->M_auth->login($username, $password);
 
 			if ($data == false) {
-				$this->session->set_flashdata('error_msg', 'Username / Password Anda Salah.');
+				$this->session->set_flashdata(
+					'error_msg',
+					'Username / Password Anda Salah.'
+				);
 				redirect('Auth');
 			} else {
 				$session = [
 					'userdata' => $data,
-					'status' => "Loged in"
+					'status' => 'Loged in',
 				];
 				$this->session->set_userdata($session);
 				redirect('Beranda');
@@ -44,7 +55,8 @@ class Auth extends CI_Controller {
 		}
 	}
 
-	public function logout() {
+	public function logout()
+	{
 		$this->session->sess_destroy();
 		redirect('Auth');
 	}

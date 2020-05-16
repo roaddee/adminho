@@ -3,5 +3,5 @@
 	"useTabs": true,
 	"tabWidth": 2,
 	"singleQuote": true,
-	"braceStyle": "1tbs"
+	"braceStyle": "psr-2"
 }

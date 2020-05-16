@@ -1,96 +1,78 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_pelanggan extends CI_Model {
-	
+class M_pelanggan extends CI_Model
+{
 	private static $table = 'pelanggan';
-	
-	public function select_all_pelanggan() {
-		$sql = "SELECT * FROM pelanggan";
 
-		$data = $this->db->query($sql);
-
-		return $data->result();
+	public function select_all_pelanggan()
+	{
+		return $this->db->get(self::$table);
 	}
 
-	public function select_all() {
-		$sql = "SELECT pelanggan.id AS id, pelanggan.nama AS pelanggan, pelanggan.kecamatan AS kecamatan, ";
-		$sql = $sql . "pelanggan.kabupaten AS kabupaten, pelanggan.provinsi AS provinsi, ";
-		$sql = $sql . "namakontak, nomorkontak, domain, alamat_cpanel, uname_cpanel, pwd_cpanel, pwd_admin, ";
-		$sql = $sql . "jasa.nama AS jasa, rupiah, tgl_mulai, tgl_akhir, ";
-		$sql = $sql . "pelaksana.nama AS pelaksana, tempat_hosting, keterangan ";
-		$sql = $sql . "FROM pelanggan, jasa, pelaksana WHERE pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id_jasa = jasa.id";
-
-		$data = $this->db->query($sql);
-
-		return $data->result();
-
-		/* $this->db
-      		 ->select('pelanggan.*')
-      		 ->select('jasa.nama as jasa')
-      		 ->select('pelaksana.nama as pelaksana')
-      		 ->from(self::$table)
-      		 ->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
-      		 ->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
-      		 ->get()
-      		 ->result(); */
+	public function select_all()
+	{
+		return $this->db
+			->select('pelanggan.nama as pelanggan, pelanggan.*')
+			->select('jasa.nama as jasa')
+			->select('pelaksana.nama as pelaksana')
+			->from(self::$table)
+			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+			->get()
+			->result();
 	}
 
-	public function select_by_id($id) {
-		$sql = "SELECT pelanggan.id, pelanggan.nama, pelanggan.kecamatan, pelanggan.kabupaten, pelanggan.provinsi, pelanggan.namakontak, ";
-		$sql = $sql . "pelanggan.nomorkontak, pelanggan.domain, pelanggan.alamat_cpanel, pelanggan.uname_cpanel, pelanggan.pwd_cpanel, ";
-		$sql = $sql . "pelanggan.pwd_admin, pelanggan.id_jasa, pelanggan.rupiah, pelanggan.id_pelaksana, pelanggan.tgl_mulai, pelanggan.tgl_akhir, pelanggan.keterangan, ";
-		$sql = $sql . "jasa.nama AS jasa, pelaksana.nama AS pelaksana FROM pelanggan, jasa, pelaksana ";
-		$sql = $sql . "WHERE pelanggan.id_jasa = jasa.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id = '{$id}'";
+	public function select_by_id($id)
+	{
+		// $sql = "SELECT pelanggan.id AS id_pelanggan, pelanggan.nama AS nama_pelanggan, pelanggan.id_jasa, pelanggan.id_kelamin, pelanggan.id_pelaksana, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_jasa = jasa.id AND pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id = '{$id}'";
 
-		$data = $this->db->query($sql);
+		// $data = $this->db->query($sql);
 
-		return $data->row();
+		// return $data->row();
+		return $this->db
+			->select('pelanggan.nama as pelanggan, pelanggan.*')
+			->select('jasa.nama as jasa')
+			->select('pelaksana.nama as pelaksana')
+			->where('pelanggan.id', $id)
+			->from(self::$table)
+			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+			->get()
+			->row();
 	}
 
-	public function select_by_pelaksana($id) {
-		$sql = "SELECT COUNT(*) AS jml FROM pelanggan WHERE id_pelaksana = {$id}";
-
-		$data = $this->db->query($sql);
-
-		return $data->row();
+	public function select_by_pelaksana($id)
+	{
+		return $this->db
+			->select('count(id) as jml')
+			->where('id_pelaksana', $id)
+			->get(self::$table)
+			->row();
 	}
 
-	public function select_by_jasa($id) {
-		$sql = "SELECT COUNT(*) AS jml FROM pelanggan WHERE id_jasa = {$id}";
-
-		$data = $this->db->query($sql);
-
-		return $data->row();
+	public function select_by_jasa($id)
+	{
+		return $this->db
+			->select('count(id) as jml')
+			->where('id_jasa', $id)
+			->get(self::$table)
+			->row();
 	}
 
-	public function update($data) {
-		/* $sql = "UPDATE pelanggan SET nama='" .$data['nama'] ."', telp='" .$data['telp'] ."', id_jasa=" .$data['jasa'] .", id_kelamin=" .$data['jk'] .", id_pelaksana=" .$data['pelaksana'] ." WHERE id='" .$data['id'] ."'";
-
-		$this->db->query($sql);
-
-		return $this->db->affected_rows(); */
-
-		$tgl_mulai = date_create_from_format('d-m-Y', $data['tgl_mulai']);
-		$tgl_akhir = date_create_from_format('d-m-Y', $data['tgl_akhir']);
-		$data['tgl_mulai'] = date_format($tgl_mulai, 'Y-m-d');
-		$data['tgl_akhir'] = date_format($tgl_akhir, 'Y-m-d');
-
-		return $this->db->update($table, $data, "id = '" . $data['id'] . "'");
-
+	public function update($data)
+	{
+		return $this->db->update(self::$table, $data, ['id' => $data['id']]);
 	}
 
-	public function delete($id) {
-		$sql = "DELETE FROM pelanggan WHERE id='" .$id ."'";
-
-		$this->db->query($sql);
-
-		//$this->db->delete('pelanggan', array('id' => $id));
-		return $this->db->affected_rows();
+	public function delete($id)
+	{
+		return $this->db->delete(self::$table, ['id' => $id]);
 	}
 
-	public function insert($data) {
-		$id = md5(DATE('ymdhms').rand());
+	public function insert($data)
+	{
+		$id = md5(DATE('ymdhms') . rand());
 		$data['id'] = $id;
 		$tgl_mulai = date_create_from_format('d-m-Y', $data['tgl_mulai']);
 		$tgl_akhir = date_create_from_format('d-m-Y', $data['tgl_akhir']);
@@ -100,21 +82,22 @@ class M_pelanggan extends CI_Model {
 		return $this->db->insert(self::$table, $data);
 	}
 
-	public function insert_batch($data) {
-		$this->db->insert_batch('pelanggan', $data);
-		
-		return $this->db->affected_rows();
+	public function insert_batch($data)
+	{
+		$this->db->insert_batch(self::$table, $data);
 	}
 
-	public function check_nama($nama) {
+	public function check_nama($nama)
+	{
 		$this->db->where('nama', $nama);
-		$data = $this->db->get('pelanggan');
+		$data = $this->db->get(self::$table);
 
 		return $data->num_rows();
 	}
 
-	public function total_rows() {
-		$data = $this->db->get('pelanggan');
+	public function total_rows()
+	{
+		$data = $this->db->get(self::$table);
 
 		return $data->num_rows();
 	}
