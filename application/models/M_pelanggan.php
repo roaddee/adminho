@@ -25,11 +25,7 @@ class M_pelanggan extends CI_Model
 
 	public function select_by_id($id)
 	{
-		// $sql = "SELECT pelanggan.id AS id_pelanggan, pelanggan.nama AS nama_pelanggan, pelanggan.id_jasa, pelanggan.id_kelamin, pelanggan.id_pelaksana, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_jasa = jasa.id AND pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id = '{$id}'";
-
-		// $data = $this->db->query($sql);
-
-		// return $data->row();
+		
 		return $this->db
 			->select('pelanggan.nama as pelanggan, pelanggan.*')
 			->select('jasa.nama as jasa')
