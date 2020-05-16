@@ -75,14 +75,14 @@ class Pelaksana extends AUTH_Controller
 			$result = $this->pelaksana->update($data);
 
 			if ($result) {
-				$out['status'] = 'success';
+				$out['type'] = 'success';
 				$out['message'] = 'Data Pelaksana Berhasil diupdate';
 			} else {
-				$out['status'] = 'error';
+				$out['type'] = 'error';
 				$out['message'] = 'Data Pelaksana Gagal diupdate';
 			}
 		} else {
-			$out['status'] = 'warning';
+			$out['type'] = 'warning';
 			$out['message'] = validation_errors();
 		}
 
@@ -220,8 +220,8 @@ class Pelaksana extends AUTH_Controller
 	private function isValidated()
 	{
 		$this->form_validation->set_rules(
-			'pelaksana',
-			'pelaksana',
+			'nama',			
+			'Nama Pelaksana',
 			'trim|required'
 		);
 		return $this->form_validation->run();

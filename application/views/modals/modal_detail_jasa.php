@@ -6,9 +6,9 @@
       <table id="tabel-detail" class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Nama</th>
-            <th>No Telp</th>
-            <th>Jenis Kelamin</th>
+            <th>Nama Desa</th>
+            <th>Kecamatan</th>
+            <th>Jenis Jasa</th>
             <th>Pelaksana</th>
           </tr>
         </thead>
@@ -18,8 +18,8 @@
               ?>
               <tr>
                 <td style="min-width:230px;"><?php echo $pelanggan->pelanggan; ?></td>
-                <td><?php echo $pegawai->telp; ?></td>
-                <td><?php echo $pegawai->kelamin; ?></td>
+                <td><?php echo $pegawai->kecamatan; ?></td>
+                <td><?php echo $pegawai->jasa; ?></td>
                 <td><?php echo $pegawai->pelaksana; ?></td>
               </tr>
               <?php
