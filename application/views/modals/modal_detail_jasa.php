@@ -8,23 +8,17 @@
           <tr>
             <th>Nama</th>
             <th>No Telp</th>
-            <th>Jenis Kelamin</th>
             <th>Pelaksana</th>
           </tr>
         </thead>
         <tbody id="data-pelanggan">
-          <?php
-            foreach ($dataJasa as $pelanggan) {
-              ?>
-              <tr>
-                <td style="min-width:230px;"><?php echo $pelanggan->pelanggan; ?></td>
-                <td><?php echo $pegawai->telp; ?></td>
-                <td><?php echo $pegawai->kelamin; ?></td>
-                <td><?php echo $pegawai->pelaksana; ?></td>
-              </tr>
-              <?php
-            }
-          ?>
+          <?php foreach($dataPelanggan as $pelanggan) : ?>
+            <tr>
+              <td style="min-width:230px;"><?= $pelanggan->pelanggan; ?></td>
+              <td><?= $pelanggan->nomorkontak; ?></td>
+              <td><?= $pelanggan->pelaksana; ?></td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
   </div>
