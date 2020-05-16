@@ -62,6 +62,11 @@ class M_pelanggan extends CI_Model
 
 	public function update($data)
 	{
+		$tgl_mulai = date_create_from_format('d-m-Y', $data['tgl_mulai']);
+		$tgl_akhir = date_create_from_format('d-m-Y', $data['tgl_akhir']);
+		$data['tgl_mulai'] = date_format($tgl_mulai, 'Y-m-d');
+		$data['tgl_akhir'] = date_format($tgl_akhir, 'Y-m-d');
+		
 		return $this->db->update(self::$table, $data, ['id' => $data['id']]);
 	}
 
