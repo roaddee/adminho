@@ -45,17 +45,19 @@ class M_pelanggan extends CI_Model
 	public function select_by_pelaksana($id)
 	{
 		return $this->db
+			->select('count(id) as jml')
 			->where('id_pelaksana', $id)
 			->get(self::$table)
-			->result();
+			->row();
 	}
 
 	public function select_by_jasa($id)
 	{
 		return $this->db
+			->select('count(id) as jml')
 			->where('id_jasa', $id)
 			->get(self::$table)
-			->result();
+			->row();
 	}
 
 	public function update($data)

@@ -6,16 +6,16 @@ class Beranda extends AUTH_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_pelanggan');
-		$this->load->model('M_pelaksana');
-		$this->load->model('M_jasa');
+		$this->load->model('m_pelanggan', 'pelanggan');
+		$this->load->model('m_pelaksana', 'pelaksana');
+		$this->load->model('m_jasa', 'jasa');
 	}
 
 	public function index()
 	{
-		$data['jml_pelanggan'] = $this->M_pelanggan->total_rows();
-		$data['jml_pelaksana'] = $this->M_pelaksana->total_rows();
-		$data['jml_jasa'] = $this->M_jasa->total_rows();
+		$data['jml_pelanggan'] = $this->pelanggan->total_rows();
+		$data['jml_pelaksana'] = $this->pelaksana->total_rows();
+		$data['jml_jasa'] = $this->jasa->total_rows();
 		$data['userdata'] = $this->userdata;
 
 		$rand = [
@@ -37,7 +37,7 @@ class Beranda extends AUTH_Controller
 			'f',
 		];
 
-		$pelaksana = $this->M_pelaksana->select_all();
+		$pelaksana = $this->pelaksana->select_all();
 		$index = 0;
 		foreach ($pelaksana as $value) {
 			$color =
@@ -49,7 +49,7 @@ class Beranda extends AUTH_Controller
 				$rand[rand(0, 15)] .
 				$rand[rand(0, 15)];
 
-			$pelanggan_by_pelaksana = $this->M_pelanggan->select_by_pelaksana(
+			$pelanggan_by_pelaksana = $this->pelanggan->select_by_pelaksana(
 				$value->id
 			);
 
@@ -61,7 +61,7 @@ class Beranda extends AUTH_Controller
 			$index++;
 		}
 
-		$jasa = $this->M_jasa->select_all();
+		$jasa = $this->jasa->select_all();
 		$index = 0;
 		foreach ($jasa as $value) {
 			$color =
@@ -73,7 +73,7 @@ class Beranda extends AUTH_Controller
 				$rand[rand(0, 15)] .
 				$rand[rand(0, 15)];
 
-			$pelanggan_by_jasa = $this->M_pelanggan->select_by_jasa($value->id);
+			$pelanggan_by_jasa = $this->pelanggan->select_by_jasa($value->id);
 
 			$data_jasa[$index]['value'] = $pelanggan_by_jasa->jml;
 			$data_jasa[$index]['color'] = $color;
