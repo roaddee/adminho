@@ -6,25 +6,19 @@
       <table id="tabel-detail" class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Nama Desa</th>
-            <th>Kecamatan</th>
-            <th>Jenis Jasa</th>
+            <th>Nama</th>
+            <th>No Telp</th>
             <th>Pelaksana</th>
           </tr>
         </thead>
         <tbody id="data-pelanggan">
-          <?php
-            foreach ($dataJasa as $pelanggan) {
-              ?>
-              <tr>
-                <td style="min-width:230px;"><?php echo $pelanggan->pelanggan; ?></td>
-                <td><?php echo $pegawai->kecamatan; ?></td>
-                <td><?php echo $pegawai->jasa; ?></td>
-                <td><?php echo $pegawai->pelaksana; ?></td>
-              </tr>
-              <?php
-            }
-          ?>
+          <?php foreach($dataPelanggan as $pelanggan) : ?>
+            <tr>
+              <td style="min-width:230px;"><?= $pelanggan->pelanggan; ?></td>
+              <td><?= $pelanggan->nomorkontak; ?></td>
+              <td><?= $pelanggan->pelaksana; ?></td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
   </div>

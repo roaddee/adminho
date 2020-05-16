@@ -25,7 +25,6 @@ class M_pelanggan extends CI_Model
 
 	public function select_by_id($id)
 	{
-		
 		return $this->db
 			->select('pelanggan.nama as pelanggan, pelanggan.*')
 			->select('jasa.nama as jasa')
@@ -36,6 +35,34 @@ class M_pelanggan extends CI_Model
 			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
 			->get()
 			->row();
+	}
+
+	public function select_all_by_jasa($id)
+	{
+		return $this->db
+			->select('pelanggan.nama as pelanggan, pelanggan.*')
+			->select('jasa.nama as jasa')
+			->select('pelaksana.nama as pelaksana')
+			->where('pelanggan.id_jasa', $id)
+			->from(self::$table)
+			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+			->get()
+			->result();
+	}
+
+	public function select_all_by_pelaksana($id)
+	{
+		return $this->db
+			->select('pelanggan.nama as pelanggan, pelanggan.*')
+			->select('jasa.nama as jasa')
+			->select('pelaksana.nama as pelaksana')
+			->where('pelanggan.id_pelaksana', $id)
+			->from(self::$table)
+			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+			->get()
+			->result();
 	}
 
 	public function select_by_pelaksana($id)
