@@ -106,7 +106,7 @@
           <label for="jasa">Jenis Jasa</label>
           <select name="id_jasa" class="form-control input-sm" aria-describedby="sizing-addon2" style="width: 100%">
             <?php foreach($dataJasa as $jasa) : ?>
-              <option value="<?= $jasa->id ?>" <?php $jasa->id === $dataPelanggan->id_jasa and print('selected') ?>><?= $jasa->nama ?></option>
+              <option value="<?= $jasa->id ?>"><?= $jasa->nama ?></option>
             <?php endforeach ?>
           </select>
         </div>
@@ -126,7 +126,7 @@
           <select name="id_pelaksana" class="form-control input-sm" aria-describedby="sizing-addon2"
             style="width: 100%">
             <?php foreach($dataPelaksana as $pelaksana) : ?>
-              <option value="<?= $pelaksana->id ?>" <?php $pelaksana->id === $dataPelanggan->id_pelaksana and print('selected') ?>><?= $pelaksana->nama ?></option>
+              <option value="<?= $pelaksana->id ?>"><?= $pelaksana->nama ?></option>
             <?php endforeach ?>
           </select>
         </div>
