@@ -104,7 +104,7 @@
       <div class='col-sm-4'>
         <div class='form-group'>
           <label for="jasa">Jenis Jasa</label>
-          <select name="id_jasa" class="form-control input-sm" aria-describedby="sizing-addon2" value="<?= $dataPelanggan->nama ?>" style="width: 100%">
+          <select name="id_jasa" class="form-control input-sm" aria-describedby="sizing-addon2" style="width: 100%">
             <?php foreach($dataJasa as $jasa) : ?>
               <option value="<?= $jasa->id ?>" <?php $jasa->id === $dataPelanggan->id_jasa and print('selected') ?>><?= $jasa->nama ?></option>
             <?php endforeach ?>
@@ -123,8 +123,7 @@
       <div class='col-sm-4'>
         <div class='form-group'>
           <label for="pelaksana">Pelaksana</label>
-          <select name="id_pelaksana" class="form-control input-sm" aria-describedby="sizing-addon2" value="<?= $dataPelanggan->nama ?>"
-            style="width: 100%">
+          <select name="id_pelaksana" class="form-control input-sm" aria-describedby="sizing-addon2" style="width: 100%">
             <?php foreach($dataPelaksana as $pelaksana) : ?>
               <option value="<?= $pelaksana->id ?>" <?php $pelaksana->id === $dataPelanggan->id_pelaksana and print('selected') ?>><?= $pelaksana->nama ?></option>
             <?php endforeach ?>
