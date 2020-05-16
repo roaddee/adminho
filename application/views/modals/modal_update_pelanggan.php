@@ -106,7 +106,8 @@
           <label for="jasa">Jenis Jasa</label>
           <select name="id_jasa" class="form-control input-sm" aria-describedby="sizing-addon2" style="width: 100%">
             <?php foreach($dataJasa as $jasa) : ?>
-              <option value="<?= $jasa->id ?>" <?php $jasa->id === $dataPelanggan->id_jasa and print('selected') ?>><?= $jasa->nama ?></option>
+            <option value="<?= $jasa->id ?>" <?php $jasa->id === $dataPelanggan->id_jasa and print('selected') ?>>
+              <?= $jasa->nama ?></option>
             <?php endforeach ?>
           </select>
         </div>
@@ -123,9 +124,12 @@
       <div class='col-sm-4'>
         <div class='form-group'>
           <label for="pelaksana">Pelaksana</label>
-          <select name="id_pelaksana" class="form-control input-sm" aria-describedby="sizing-addon2" style="width: 100%">
+          <select name="id_pelaksana" class="form-control input-sm" aria-describedby="sizing-addon2"
+            style="width: 100%">
             <?php foreach($dataPelaksana as $pelaksana) : ?>
-              <option value="<?= $pelaksana->id ?>" <?php $pelaksana->id === $dataPelanggan->id_pelaksana and print('selected') ?>><?= $pelaksana->nama ?></option>
+            <option value="<?= $pelaksana->id ?>"
+              <?php $pelaksana->id === $dataPelanggan->id_pelaksana and print('selected') ?>><?= $pelaksana->nama ?>
+            </option>
             <?php endforeach ?>
           </select>
         </div>
@@ -138,14 +142,16 @@
         <div class='form-group'>
           <label for="tgl_mulai">Tanggal Mulai</label>
           <input id="input_mask_tanggal_mulai" type="text" class="form-control input-sm" placeholder="Tanggal Mulai"
-            name="tgl_mulai" aria-describedby="sizing-addon2" value="<?= date_format(date_create_from_format('Y-m-d', $dataPelanggan->tgl_mulai), 'd-m-Y') ?>"></input>
+            name="tgl_mulai" aria-describedby="sizing-addon2"
+            value="<?= date_format(date_create_from_format('Y-m-d', $dataPelanggan->tgl_mulai), 'd-m-Y') ?>"></input>
         </div>
       </div>
       <div class='col-sm-4'>
         <div class='form-group'>
           <label for="tgl_akhir">Tanggal Akhir</label>
           <input id="input_mask_tanggal_akhir" type="text" class="form-control input-sm" placeholder="Tanggal Akhir"
-            name="tgl_akhir" aria-describedby="sizing-addon2" value="<?= date_format(date_create_from_format('Y-m-d', $dataPelanggan->tgl_akhir), 'd-m-Y') ?>"></input>
+            name="tgl_akhir" aria-describedby="sizing-addon2"
+            value="<?= date_format(date_create_from_format('Y-m-d', $dataPelanggan->tgl_akhir), 'd-m-Y') ?>"></input>
         </div>
       </div>
       <div class='col-sm-4'>
@@ -165,46 +171,47 @@
       <div class="col-sm-4"></div>
     </div>
   </form>
+</div>
 
-  <script type="text/javascript">
-    $(function () {
-      $(".select2").select2();
+<script type="text/javascript">
+  $(function () {
+    $(".select2").select2();
 
-      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-        checkboxClass: 'icheckbox_flat-blue',
-        radioClass: 'iradio_flat-blue'
-      });
-
-      $("#input_mask_tanggal_mulai").inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "dd-mm-yyyy",
-        separator: "-"
-      });
-
-      $("#input_mask_tanggal_akhir").inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "dd-mm-yyyy",
-        separator: "-"
-      });
-
-      $("#input_mask_tanggal_update").inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "dd-mm-yyyy",
-        separator: "-"
-      });
-
-      $("#input_mask_rupiah").inputmask({
-        prefix: 'Rp ',
-        radixPoint: ',',
-        groupSeparator: ".",
-        alias: "numeric",
-        autoGroup: true,
-        digits: 0
-      });
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue'
     });
-  </script>
 
-  <!-- <script>
+    $("#input_mask_tanggal_mulai").inputmask("datetime", {
+      mask: "1-2-y",
+      placeholder: "dd-mm-yyyy",
+      separator: "-"
+    });
+
+    $("#input_mask_tanggal_akhir").inputmask("datetime", {
+      mask: "1-2-y",
+      placeholder: "dd-mm-yyyy",
+      separator: "-"
+    });
+
+    $("#input_mask_tanggal_update").inputmask("datetime", {
+      mask: "1-2-y",
+      placeholder: "dd-mm-yyyy",
+      separator: "-"
+    });
+
+    $("#input_mask_rupiah").inputmask({
+      prefix: 'Rp ',
+      radixPoint: ',',
+      groupSeparator: ".",
+      alias: "numeric",
+      autoGroup: true,
+      digits: 0
+    });
+  });
+</script>
+
+<!-- <script>
 $('#input_mask').inputmask({
     mask: 'SJ-AAA-****-99999',
     definitions: {

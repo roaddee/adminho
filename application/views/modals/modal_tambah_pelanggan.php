@@ -106,7 +106,7 @@
           <label for="jasa">Jenis Jasa</label>
           <select name="id_jasa" class="form-control input-sm" aria-describedby="sizing-addon2" style="width: 100%">
             <?php foreach($dataJasa as $jasa) : ?>
-              <option value="<?= $jasa->id ?>"><?= $jasa->nama ?></option>
+            <option value="<?= $jasa->id ?>"><?= $jasa->nama ?></option>
             <?php endforeach ?>
           </select>
         </div>
@@ -126,7 +126,7 @@
           <select name="id_pelaksana" class="form-control input-sm" aria-describedby="sizing-addon2"
             style="width: 100%">
             <?php foreach($dataPelaksana as $pelaksana) : ?>
-              <option value="<?= $pelaksana->id ?>"><?= $pelaksana->nama ?></option>
+            <option value="<?= $pelaksana->id ?>"><?= $pelaksana->nama ?></option>
             <?php endforeach ?>
           </select>
         </div>
@@ -166,46 +166,47 @@
       <div class="col-sm-4"></div>
     </div>
   </form>
+</div>
 
-  <script type="text/javascript">
-    $(function () {
-      $(".select2").select2();
+<script type="text/javascript">
+  $(function () {
+    $(".select2").select2();
 
-      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-        checkboxClass: 'icheckbox_flat-blue',
-        radioClass: 'iradio_flat-blue'
-      });
-
-      $("#input_mask_tanggal_mulai").inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "dd-mm-yyyy",
-        separator: "-"
-      });
-
-      $("#input_mask_tanggal_akhir").inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "dd-mm-yyyy",
-        separator: "-"
-      });
-
-      $("#input_mask_tanggal_update").inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "dd-mm-yyyy",
-        separator: "-"
-      });
-
-      $("#input_mask_rupiah").inputmask({
-        prefix: 'Rp ',
-        radixPoint: ',',
-        groupSeparator: ".",
-        alias: "numeric",
-        autoGroup: true,
-        digits: 0
-      });
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue'
     });
-  </script>
 
-  <!-- <script>
+    $("#input_mask_tanggal_mulai").inputmask("datetime", {
+      mask: "1-2-y",
+      placeholder: "dd-mm-yyyy",
+      separator: "-"
+    });
+
+    $("#input_mask_tanggal_akhir").inputmask("datetime", {
+      mask: "1-2-y",
+      placeholder: "dd-mm-yyyy",
+      separator: "-"
+    });
+
+    $("#input_mask_tanggal_update").inputmask("datetime", {
+      mask: "1-2-y",
+      placeholder: "dd-mm-yyyy",
+      separator: "-"
+    });
+
+    $("#input_mask_rupiah").inputmask({
+      prefix: 'Rp ',
+      radixPoint: ',',
+      groupSeparator: ".",
+      alias: "numeric",
+      autoGroup: true,
+      digits: 0
+    });
+  });
+</script>
+
+<!-- <script>
 $('#input_mask').inputmask({
     mask: 'SJ-AAA-****-99999',
     definitions: {
