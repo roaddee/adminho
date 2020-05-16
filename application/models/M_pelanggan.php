@@ -57,7 +57,7 @@ class M_pelanggan extends CI_Model
 			->select('pelanggan.nama as pelanggan, pelanggan.*')
 			->select('jasa.nama as jasa')
 			->select('pelaksana.nama as pelaksana')
-			->where('pelanggan.is_pelaksana', $id)
+			->where('pelanggan.id_pelaksana', $id)
 			->from(self::$table)
 			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
 			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
