@@ -25,11 +25,6 @@ class M_pelanggan extends CI_Model
 
 	public function select_by_id($id)
 	{
-		// $sql = "SELECT pelanggan.id AS id_pelanggan, pelanggan.nama AS nama_pelanggan, pelanggan.id_jasa, pelanggan.id_kelamin, pelanggan.id_pelaksana, pelanggan.telp AS telp, jasa.nama AS jasa, kelamin.nama AS kelamin, pelaksana.nama AS pelaksana FROM pelanggan, jasa, kelamin, pelaksana WHERE pelanggan.id_jasa = jasa.id AND pelanggan.id_kelamin = kelamin.id AND pelanggan.id_pelaksana = pelaksana.id AND pelanggan.id = '{$id}'";
-
-		// $data = $this->db->query($sql);
-
-		// return $data->row();
 		return $this->db
 			->select('pelanggan.nama as pelanggan, pelanggan.*')
 			->select('jasa.nama as jasa')
@@ -40,6 +35,34 @@ class M_pelanggan extends CI_Model
 			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
 			->get()
 			->row();
+	}
+
+	public function select_all_by_jasa($id)
+	{
+		return $this->db
+			->select('pelanggan.nama as pelanggan, pelanggan.*')
+			->select('jasa.nama as jasa')
+			->select('pelaksana.nama as pelaksana')
+			->where('pelanggan.id_jasa', $id)
+			->from(self::$table)
+			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+			->get()
+			->result();
+	}
+
+	public function select_all_by_pelaksana($id)
+	{
+		return $this->db
+			->select('pelanggan.nama as pelanggan, pelanggan.*')
+			->select('jasa.nama as jasa')
+			->select('pelaksana.nama as pelaksana')
+			->where('pelanggan.is_pelaksana', $id)
+			->from(self::$table)
+			->join('jasa', 'pelanggan.id_jasa = jasa.id', 'left')
+			->join('pelaksana', 'pelanggan.id_pelaksana = pelaksana.id', 'left')
+			->get()
+			->result();
 	}
 
 	public function select_by_pelaksana($id)
@@ -62,6 +85,11 @@ class M_pelanggan extends CI_Model
 
 	public function update($data)
 	{
+		$tgl_mulai = date_create_from_format('d-m-Y', $data['tgl_mulai']);
+		$tgl_akhir = date_create_from_format('d-m-Y', $data['tgl_akhir']);
+		$data['tgl_mulai'] = date_format($tgl_mulai, 'Y-m-d');
+		$data['tgl_akhir'] = date_format($tgl_akhir, 'Y-m-d');
+
 		return $this->db->update(self::$table, $data, ['id' => $data['id']]);
 	}
 

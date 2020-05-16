@@ -7,6 +7,7 @@ class Jasa extends AUTH_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_jasa', 'jasa');
+		$this->load->model('m_pelanggan', 'pelanggan');
 	}
 
 	public function index()
@@ -35,32 +36,30 @@ class Jasa extends AUTH_Controller
 
 	public function prosesTambah()
 	{
-		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
-
 		$data = $this->input->post();
-		if ($this->form_validation->run() == true) {
+		if ($this->isValidated()) {
 			$result = $this->jasa->insert($data);
 
-			if ($result > 0) {
-				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Jasa Berhasil ditambahkan', '20px');
+			if ($result) {
+				$out['type'] = 'success';
+				$out['message'] = 'Data Jasa Berhasil ditambahkan';
 			} else {
-				$out['status'] = '';
-				$out['msg'] = show_err_msg('Data Jasa Gagal ditambahkan', '20px');
+				$out['type'] = 'error';
+				$out['message'] = 'Data Jasa Gagal ditambahkan';
 			}
 		} else {
-			$out['status'] = 'form';
-			$out['msg'] = show_err_msg(validation_errors());
+			$out['type'] = 'warning';
+			$out['message'] = validation_errors();
 		}
 
-		echo json_encode($out);
+		$this->printJson($out);
 	}
 
 	public function update()
 	{
 		$data['userdata'] = $this->userdata;
 
-		$id = trim($_POST['id']);
+		$id = trim($this->input->post('id'));
 		$data['dataJasa'] = $this->jasa->select_by_id($id);
 
 		echo show_my_modal('modals/modal_update_jasa', 'update-jasa', $data);
@@ -68,47 +67,49 @@ class Jasa extends AUTH_Controller
 
 	public function prosesUpdate()
 	{
-		$this->form_validation->set_rules('jasa', 'Jasa', 'trim|required');
-
 		$data = $this->input->post();
-		if ($this->form_validation->run() == true) {
+		if ($this->isValidated()) {
 			$result = $this->jasa->update($data);
 
-			if ($result > 0) {
-				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Jasa Berhasil diupdate', '20px');
+			if ($result) {
+				$out['type'] = 'success';
+				$out['message'] = 'Data Jasa Berhasil diperbarui';
 			} else {
-				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Jasa Gagal diupdate', '20px');
+				$out['type'] = 'error';
+				$out['message'] = 'Data Jasa Gagal diperbarui';
 			}
 		} else {
-			$out['status'] = 'form';
-			$out['msg'] = show_err_msg(validation_errors());
+			$out['type'] = 'warning';
+			$out['message'] = validation_errors();
 		}
 
-		echo json_encode($out);
+		$this->printJson($out);
 	}
 
 	public function delete()
 	{
-		$id = $_POST['id'];
+		$id = $this->input->post('id');
 		$result = $this->jasa->delete($id);
 
-		if ($result > 0) {
-			echo show_succ_msg('Data Jasa Berhasil dihapus', '20px');
+		if ($result) {
+			$out['type'] = 'success';
+			$out['message'] = 'Data Jasa Berhasil dihapus';
 		} else {
-			echo show_err_msg('Data Jasa Gagal dihapus', '20px');
+			$out['type'] = 'error';
+			$out['message'] = 'Data Jasa Gagal dihapus';
 		}
+
+		$this->printJson($out);
 	}
 
 	public function detail()
 	{
 		$data['userdata'] = $this->userdata;
 
-		$id = trim($_POST['id']);
+		$id = $this->input->post('id');
 		$data['jasa'] = $this->jasa->select_by_id($id);
 		$data['jumlahJasa'] = $this->jasa->total_rows();
-		$data['dataJasa'] = $this->jasa->select_by_pegawai($id);
+		$data['dataPelanggan'] = $this->pelanggan->select_all_by_jasa($id);
 
 		echo show_my_modal('modals/modal_detail_jasa', 'detail-jasa', $data, 'lg');
 	}
@@ -208,6 +209,22 @@ class Jasa extends AUTH_Controller
 				}
 			}
 		}
+	}
+
+	private function isValidated()
+	{
+		$this->form_validation->set_rules('nama', 'Jasa', 'trim|required');
+		return $this->form_validation->run();
+	}
+
+	private function printJson($data)
+	{
+		$this->output
+			->set_content_type('application/json', 'utf-8')
+			->set_output(json_encode($data, JSON_PRETTY_PRINT))
+			->_display();
+
+		exit();
 	}
 }
 

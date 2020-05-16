@@ -156,7 +156,7 @@ $(document).on('click', '.hapus-dataJasa', function () {
 
 	$.ajax({
 		method: 'POST',
-		url: BASE_URL,
+		url: BASE_URL + 'jasa/delete',
 		data: {
 			id: id
 		},
@@ -220,12 +220,12 @@ $(document).on('click', '.detail-dataJasa', function () {
 $('#form-tambah-jasa').submit(function (e) {
 	e.preventDefault();
 	const data = $(this).serialize();
-
+	
 	$.ajax({
 		method: 'POST',
 		url: BASE_URL + 'jasa/prosesTambah',
 		data: data,
-		success: () => {
+		success: (response) => {
 			if (response.type !== 'warning') {
 				$('#form-tambah-jasa').trigger('reset');
 				$('#tambah-jasa').modal('hide');
@@ -247,7 +247,7 @@ $(document).on('submit', '#form-update-jasa', function (e) {
 		method: 'POST',
 		url: BASE_URL + 'jasa/prosesUpdate',
 		data: data,
-		success: () => {
+		success: (response) => {
 			if (response.type !== 'warning') {
 				$('#form-update-jasa').trigger('reset');
 				$('#update-jasa').modal('hide');
