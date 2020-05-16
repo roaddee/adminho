@@ -8,7 +8,7 @@
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Nama Pelaksana" name="pelaksana" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Nama Pelaksana" name="nama" aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">
