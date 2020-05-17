@@ -23,7 +23,7 @@ class Pelanggan extends AUTH_Controller
 		$data['deskripsi'] = 'Atur Data Pelanggan';
 
 		$data['modal_tambah_pelanggan'] = show_my_modal(
-			'modals/modal_tambah_Pelanggan',
+			'modals/modal_tambah_pelanggan',
 			'tambah-pelanggan',
 			$data
 		);
