@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th>Nama</th>
-            <th>No Telp</th>
+            <th>Nomor Kontak</th>
             <th>Pelaksana</th>
           </tr>
         </thead>
