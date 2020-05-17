@@ -7,20 +7,20 @@
         <thead>
           <tr>
             <th>Nama</th>
-            <th>No Telp</th>
+            <th>Nomor Kontak</th>
             <th>Jasa</th>
-            <th>Jenis Kelamin</th>
+            <th>Keterangan</th>
           </tr>
         </thead>
         <tbody id="data-pelaksana">
           <?php
-            foreach ($dataPelaksana as $pelanggan) {
+            foreach ($dataPelanggan as $pelanggan) {
               ?>
               <tr>
                 <td style="min-width:230px;"><?php echo $pelanggan->pelanggan; ?></td>
-                <td><?php echo $pelanggan->telp; ?></td>
+                <td><?php echo $pelanggan->nomorkontak; ?></td>
                 <td><?php echo $pelanggan->jasa; ?></td>
-                <td><?php echo $pelanggan->kelamin; ?></td>
+                <td><?php echo $pelanggan->keterangan; ?></td>
               </tr>
               <?php
             }
