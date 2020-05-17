@@ -6,7 +6,8 @@ class Pelaksana extends AUTH_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_pelaksana', 'pelaksana');
+		$this->load->model('M_pelaksana', 'pelaksana');
+		$this->load->model('M_pelanggan', 'pelanggan');
 	}
 
 	public function index()
@@ -103,7 +104,7 @@ class Pelaksana extends AUTH_Controller
 
 	public function detail()
 	{
-		$data['userdata'] = $this->userdata;
+		/* $data['userdata'] = $this->userdata;
 
 		$id = trim($this->input->post('id'));
 		$data['pelaksana'] = $this->pelaksana->select_by_id($id);
@@ -114,7 +115,16 @@ class Pelaksana extends AUTH_Controller
 			'detail-pelaksana',
 			$data,
 			'lg'
-		);
+		); */
+
+		$data['userdata'] = $this->userdata;
+
+		$id = $this->input->post('id');
+		$data['pelaksana'] = $this->pelaksana->select_by_id($id);
+		$data['jumlahPelaksana'] = $this->pelaksana->total_rows();
+		$data['dataPelanggan'] = $this->pelanggan->select_all_by_pelaksana($id);
+
+		echo show_my_modal('modals/modal_detail_pelaksana', 'detail-pelaksana', $data, 'lg');
 	}
 
 	public function export()
