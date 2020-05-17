@@ -6,8 +6,8 @@ class Jasa extends AUTH_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_jasa', 'jasa');
-		$this->load->model('m_pelanggan', 'pelanggan');
+		$this->load->model('M_jasa', 'jasa');
+		$this->load->model('M_pelanggan', 'pelanggan');
 	}
 
 	public function index()
