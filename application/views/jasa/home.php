@@ -4,8 +4,11 @@
 
 <div class="box">
   <div class="box-header">
-    <div class="col-md-6">
+    <div class="col-md-3">
         <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-jasa"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
+    </div>
+    <div class="col-md-3">
+        <span></span>
     </div>
     <div class="col-md-3">
         <!-- <a href="<?php echo base_url('Jasa/export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-floppy-save"></i> Export Data Excel</a> -->
