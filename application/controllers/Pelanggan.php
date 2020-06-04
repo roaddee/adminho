@@ -74,7 +74,43 @@ class Pelanggan extends AUTH_Controller
 		);
 	}
 
+	public function perpanjangan()
+	{
+		$id = trim($this->input->post('id'));
+
+		$data['dataPelanggan'] = $this->pelanggan->select_by_id($id);
+		$data['dataPelaksana'] = $this->pelaksana->select_all();
+		$data['dataJasa'] = $this->jasa->select_all();
+		$data['userdata'] = $this->userdata;
+
+		echo show_my_modal(
+			'modals/modal_perpanjangan',
+			'update-perpanjangan',
+			$data
+		);
+	}
+
 	public function prosesUpdate()
+	{
+		$data = $this->input->post();
+		if ($this->isValidated()) {
+			$result = $this->pelanggan->update($data);
+			if ($result) {
+				$out['type'] = 'success';
+				$out['message'] = 'Data Pelanggan Berhasil diperbarui';
+			} else {
+				$out['type'] = 'error';
+				$out['message'] = 'Data Pelanggan Gagal diperbarui';
+			}
+		} else {
+			$out['type'] = 'warning';
+			$out['message'] = validation_errors();
+		}
+
+		$this->printJson($out);
+	}
+
+	public function prosesPerpanjangan()
 	{
 		$data = $this->input->post();
 		if ($this->isValidated()) {

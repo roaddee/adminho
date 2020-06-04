@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
       <div class="col-md-12">
-          <button type="submit" class="form-control btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Import Data</button>
+        <button type="submit" class="form-control btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Import Data</button>
       </div>
     </div>
   </form>

@@ -19,28 +19,36 @@
       <li class="header">Daftar Menu</li>
       <!-- Optionally, you can add icons to the links -->
 
-      <li <?php if ($page == 'beranda') {echo 'class="active"';} ?>>
+      <li <?php if ($page == 'beranda') {
+            echo 'class="active"';
+          } ?>>
         <a href="<?php echo base_url('Beranda'); ?>">
           <i class="fa fa-home"></i>
           <span>Beranda</span>
         </a>
       </li>
-      
-      <li <?php if ($page == 'pelanggan') {echo 'class="active"';} ?>>
+
+      <li <?php if ($page == 'pelanggan') {
+            echo 'class="active"';
+          } ?>>
         <a href="<?php echo base_url('Pelanggan'); ?>">
           <i class="fa fa-user"></i>
           <span>Data Pelanggan</span>
         </a>
       </li>
 
-      <li <?php if ($page == 'pelaksana') {echo 'class="active"';} ?>>
+      <li <?php if ($page == 'pelaksana') {
+            echo 'class="active"';
+          } ?>>
         <a href="<?php echo base_url('Pelaksana'); ?>">
           <i class="fa fa-briefcase"></i>
           <span>Data Pelaksana</span>
         </a>
       </li>
-      
-      <li <?php if ($page == 'jasa') {echo 'class="active"';} ?>>
+
+      <li <?php if ($page == 'jasa') {
+            echo 'class="active"';
+          } ?>>
         <a href="<?php echo base_url('Jasa'); ?>">
           <i class="fa fa-location-arrow"></i>
           <span>Data Macam Jasa</span>

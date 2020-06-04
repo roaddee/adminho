@@ -2,42 +2,42 @@ window.onload = () => {
 	tampilPelanggan();
 	tampilPelaksana();
 	tampilJasa();
-}
+};
 
 const toast = Swal.mixin({
 	toast: true,
 	position: 'top-end',
 	showConfirmButton: false,
 	timer: 3000,
-	timerProgressBar: true
+	timerProgressBar: true,
 });
 
 let dataTable = $('#list-data').dataTable({
-	'paging': true,
-	'lengthChange': true,
-	'searching': true,
-	'ordering': true,
-	'info': true,
-	'autoWidth': false
+	paging: true,
+	lengthChange: true,
+	searching: true,
+	ordering: true,
+	info: true,
+	autoWidth: false,
 });
 
 const refresh = () => {
 	dataTable = $('#list-data').dataTable();
-}
+};
 
 const showNotification = (type = 'error', message = null) => {
 	toast.fire({
 		icon: type,
-		html: message
+		html: message,
 	});
-}
+};
 
 const showError = () => {
 	toast.fire({
 		icon: 'error',
-		text: 'Terjadi kesalahan saat memproses permintaan Anda'
+		text: 'Terjadi kesalahan saat memproses permintaan Anda',
 	});
-}
+};
 
 //pelanggan
 const tampilPelanggan = () => {
@@ -46,13 +46,13 @@ const tampilPelanggan = () => {
 		$('#data-pelanggan').html(data);
 		refresh();
 	});
-}
+};
 
 let idPelanggan;
 
 $(document).on('click', '.konfirmasiHapus-pelanggan', function () {
 	idPelanggan = $(this).attr('data-id');
-})
+});
 
 $(document).on('click', '.hapus-dataPelanggan', function () {
 	const id = idPelanggan;
@@ -61,7 +61,7 @@ $(document).on('click', '.hapus-dataPelanggan', function () {
 		method: 'POST',
 		url: BASE_URL + 'pelanggan/delete',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#konfirmasiHapus').modal('hide');
@@ -70,9 +70,9 @@ $(document).on('click', '.hapus-dataPelanggan', function () {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $(document).on('click', '.update-dataPelanggan', function () {
 	const id = $(this).attr('data-id');
@@ -81,7 +81,7 @@ $(document).on('click', '.update-dataPelanggan', function () {
 		method: 'POST',
 		url: BASE_URL + 'pelanggan/update',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#tempat-modal').html(response);
@@ -89,9 +89,30 @@ $(document).on('click', '.update-dataPelanggan', function () {
 		},
 		error: () => {
 			showError();
-		}
-	})
-})
+		},
+	});
+});
+
+//untuk perpanjangan
+$(document).on('click', '.update-dataPerpanjangan', function () {
+	const id = $(this).attr('data-id');
+
+	$.ajax({
+		method: 'POST',
+		url: BASE_URL + 'pelanggan/perpanjangan',
+		data: {
+			id: id,
+		},
+		success: (response) => {
+			$('#tempat-modal').html(response);
+			$('#update-perpanjangan').modal('show');
+		},
+		error: () => {
+			showError();
+		},
+	});
+});
+//--
 
 $('#form-tambah-pelanggan').submit(function (e) {
 	e.preventDefault();
@@ -110,7 +131,7 @@ $('#form-tambah-pelanggan').submit(function (e) {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
 });
 
@@ -132,9 +153,33 @@ $(document).on('submit', '#form-update-pelanggan', function (e) {
 		},
 		error: () => {
 			showError();
-		}
-	})
+		},
+	});
 });
+
+//untuk perpanjangan
+$(document).on('submit', '#form-update-perpanjangan', function (e) {
+	e.preventDefault();
+	const data = $(this).serialize();
+
+	$.ajax({
+		method: 'POST',
+		url: BASE_URL + 'pelanggan/prosesPerpanjangan',
+		data: data,
+		success: (response) => {
+			if (response.type !== 'warning') {
+				$('#form-update-perpanjangan').trigger('reset');
+				$('#update-perpanjangan').modal('hide');
+			}
+			showNotification(response.type, response.message);
+			tampilPelanggan();
+		},
+		error: () => {
+			showError();
+		},
+	});
+});
+// --
 
 //Jasa
 const tampilJasa = () => {
@@ -143,13 +188,13 @@ const tampilJasa = () => {
 		$('#data-jasa').html(data);
 		refresh();
 	});
-}
+};
 
 let idJasa;
 
 $(document).on('click', '.konfirmasiHapus-jasa', function () {
 	idJasa = $(this).attr('data-id');
-})
+});
 
 $(document).on('click', '.hapus-dataJasa', function () {
 	const id = idJasa;
@@ -158,7 +203,7 @@ $(document).on('click', '.hapus-dataJasa', function () {
 		method: 'POST',
 		url: BASE_URL + 'jasa/delete',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#konfirmasiHapus').modal('hide');
@@ -167,9 +212,9 @@ $(document).on('click', '.hapus-dataJasa', function () {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $(document).on('click', '.update-dataJasa', function () {
 	const id = $(this).attr('data-id');
@@ -178,7 +223,7 @@ $(document).on('click', '.update-dataJasa', function () {
 		method: 'POST',
 		url: BASE_URL + 'jasa/update',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#tempat-modal').html(response);
@@ -186,9 +231,9 @@ $(document).on('click', '.update-dataJasa', function () {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $(document).on('click', '.detail-dataJasa', function () {
 	const id = $(this).attr('data-id');
@@ -197,30 +242,30 @@ $(document).on('click', '.detail-dataJasa', function () {
 		method: 'POST',
 		url: BASE_URL + 'jasa/detail',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#tempat-modal').html(response);
 			$('#tabel-detail').dataTable({
-				'paging': true,
-				'lengthChange': false,
-				'searching': true,
-				'ordering': true,
-				'info': true,
-				'autoWidth': false
+				paging: true,
+				lengthChange: false,
+				searching: true,
+				ordering: true,
+				info: true,
+				autoWidth: false,
 			});
 			$('#detail-jasa').modal('show');
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $('#form-tambah-jasa').submit(function (e) {
 	e.preventDefault();
 	const data = $(this).serialize();
-	
+
 	$.ajax({
 		method: 'POST',
 		url: BASE_URL + 'jasa/prosesTambah',
@@ -235,7 +280,7 @@ $('#form-tambah-jasa').submit(function (e) {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
 });
 
@@ -257,7 +302,7 @@ $(document).on('submit', '#form-update-jasa', function (e) {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
 });
 
@@ -268,13 +313,13 @@ const tampilPelaksana = () => {
 		$('#data-pelaksana').html(data);
 		refresh();
 	});
-}
+};
 
 let idPelaksana;
 
 $(document).on('click', '.konfirmasiHapus-pelaksana', function () {
 	idPelaksana = $(this).attr('data-id');
-})
+});
 
 $(document).on('click', '.hapus-dataPelaksana', function () {
 	const id = idPelaksana;
@@ -283,7 +328,7 @@ $(document).on('click', '.hapus-dataPelaksana', function () {
 		method: 'POST',
 		url: BASE_URL + 'pelaksana/delete',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#konfirmasiHapus').modal('hide');
@@ -292,9 +337,9 @@ $(document).on('click', '.hapus-dataPelaksana', function () {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $(document).on('click', '.update-dataPelaksana', function () {
 	const id = $(this).attr('data-id');
@@ -303,7 +348,7 @@ $(document).on('click', '.update-dataPelaksana', function () {
 		method: 'POST',
 		url: BASE_URL + 'pelaksana/update',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#tempat-modal').html(response);
@@ -311,9 +356,9 @@ $(document).on('click', '.update-dataPelaksana', function () {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $(document).on('click', '.detail-dataPelaksana', function () {
 	const id = $(this).attr('data-id');
@@ -322,25 +367,25 @@ $(document).on('click', '.detail-dataPelaksana', function () {
 		method: 'POST',
 		url: BASE_URL + 'pelaksana/detail',
 		data: {
-			id: id
+			id: id,
 		},
 		success: (response) => {
 			$('#tempat-modal').html(response);
 			$('#tabel-detail').dataTable({
-				'paging': true,
-				'lengthChange': false,
-				'searching': true,
-				'ordering': true,
-				'info': true,
-				'autoWidth': false
+				paging: true,
+				lengthChange: false,
+				searching: true,
+				ordering: true,
+				info: true,
+				autoWidth: false,
 			});
 			$('#detail-pelaksana').modal('show');
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
-})
+});
 
 $('#form-tambah-pelaksana').submit(function (e) {
 	e.preventDefault();
@@ -359,7 +404,7 @@ $('#form-tambah-pelaksana').submit(function (e) {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
 });
 
@@ -381,6 +426,6 @@ $(document).on('submit', '#form-update-pelaksana', function (e) {
 		},
 		error: () => {
 			showError();
-		}
+		},
 	});
 });

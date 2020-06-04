@@ -230,7 +230,7 @@ class Pelaksana extends AUTH_Controller
 	private function isValidated()
 	{
 		$this->form_validation->set_rules(
-			'nama',			
+			'nama',
 			'Nama Pelaksana',
 			'trim|required'
 		);
