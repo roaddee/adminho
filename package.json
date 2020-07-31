@@ -13,8 +13,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@prettier/plugin-php": "^0.14.0",
-    "phplint": "^2.0.1",
+    "@prettier/plugin-php": "^0.14.3",
+    "phplint": "^2.0.3",
     "prettier": "^2.0.5"
   }
 }
